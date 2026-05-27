@@ -3,21 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marketing Spring Hackathon · Starter Kit</title>
-<meta name="description" content="Five projects, five quick starter guides — how to think about each, where Glean and Gemini fit, and what to skip.">
+<title>Marketing AI Hackathon · Spring '26 · London</title>
+<meta name="description" content="Five starter briefs for the Marketing AI Hackathon, Spring '26, London — how to tackle each project with Glean and Gemini.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
   :root {
-    --bg: #FBF4E4;
-    --bg-strong: #F5EAD0;
-    --text: #15131A;
-    --text-muted: #5A5560;
-    --border: rgba(21,19,26,0.12);
-    --border-strong: rgba(21,19,26,0.22);
-    --project-color: #FF5A36;
-    --on-color: #FBF4E4;
+    --bg: #fbfafe;            /* Lavender 25 */
+    --bg-strong: #f2f1fe;     /* Lavender 100 */
+    --bg-hover: #ece9fb;      /* Lavender 200 */
+    --surface: #ffffff;
+    --text: #2d2553;          /* Lavender 1000 */
+    --text-muted: #655d67;    /* Neutral 700 */
+    --border: #dddbf1;        /* Lavender 300 */
+    --border-strong: #c6b8fe; /* Lavender 400 */
+    --project-color: #564794; /* default: Lavender 800 */
+    --on-color: #fbfafe;
     --max-w: 760px;
     --radius: 14px;
   }
@@ -52,7 +54,8 @@
   code {
     font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
     font-size: 0.9em;
-    background: rgba(21,19,26,0.08);
+    background: var(--bg-strong);
+    color: var(--text);
     padding: 2px 7px;
     border-radius: 4px;
   }
@@ -224,7 +227,7 @@
     opacity: 0.7;
   }
   [role="tab"]:hover {
-    background: var(--bg-strong);
+    background: var(--bg-hover);
     transform: translateY(-1px);
   }
   [role="tab"][aria-selected="true"] {
@@ -414,38 +417,40 @@
 
 <header class="site">
   <div class="hero-row">
-    <span class="kicker">Marketing Spring Hackathon</span>
+    <span class="kicker">Marketing AI Hackathon</span>
     <span class="sticker">Spring '26</span>
-    <span class="sticker alt">v1.0</span>
+    <span class="sticker alt">London</span>
   </div>
-  <h1 class="display">Pick your <em>project</em>.</h1>
-  <p class="subtitle">Five starter guides — how to think about each project, where Glean and Gemini fit, and what to skip. Read the one you're on. Ignore the rest.</p>
+  <h1 class="display">The starter <em>briefs</em>.</h1>
+  <p class="subtitle">Five briefs — one per project team. How to think about it, where Glean and Gemini fit, and what to skip.</p>
 </header>
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Five projects</span><span class="star">✶</span>
+    <span>Marketing AI Hackathon</span><span class="star">✶</span>
+    <span>Spring '26</span><span class="star">✶</span>
+    <span>London</span><span class="star">✶</span>
     <span>Glean</span><span class="star">✶</span>
     <span>Gemini</span><span class="star">✶</span>
     <span>Zapier (optional)</span><span class="star">✶</span>
     <span>Build · Ship · Demo</span><span class="star">✶</span>
-    <span>Marketing Spring '26</span><span class="star">✶</span>
-    <span>Five projects</span><span class="star">✶</span>
+    <span>Marketing AI Hackathon</span><span class="star">✶</span>
+    <span>Spring '26</span><span class="star">✶</span>
+    <span>London</span><span class="star">✶</span>
     <span>Glean</span><span class="star">✶</span>
     <span>Gemini</span><span class="star">✶</span>
     <span>Zapier (optional)</span><span class="star">✶</span>
     <span>Build · Ship · Demo</span><span class="star">✶</span>
-    <span>Marketing Spring '26</span><span class="star">✶</span>
   </div>
 </div>
 
 <div class="tabs-wrap">
   <div role="tablist" aria-label="Hackathon project guides">
-    <button role="tab" id="tab-brief-agent" aria-controls="brief-agent" aria-selected="true" tabindex="0" data-slug="brief-agent" data-color="#FF5A36" data-num="01" style="--tab-color:#FF5A36"><span class="tab-num">01</span>Brief Agent</button>
-    <button role="tab" id="tab-community-update-agent" aria-controls="community-update-agent" aria-selected="false" tabindex="-1" data-slug="community-update-agent" data-color="#5B4BFF" data-num="02" style="--tab-color:#5B4BFF"><span class="tab-num">02</span>Community Update</button>
-    <button role="tab" id="tab-content-engineering-system" aria-controls="content-engineering-system" aria-selected="false" tabindex="-1" data-slug="content-engineering-system" data-color="#0E8C7A" data-num="03" style="--tab-color:#0E8C7A"><span class="tab-num">03</span>Content Engineering</button>
-    <button role="tab" id="tab-customer-journey-360" aria-controls="customer-journey-360" aria-selected="false" tabindex="-1" data-slug="customer-journey-360" data-color="#2D8FE3" data-num="04" style="--tab-color:#2D8FE3"><span class="tab-num">04</span>Customer Journey 360</button>
-    <button role="tab" id="tab-update-mega-mind" aria-controls="update-mega-mind" aria-selected="false" tabindex="-1" data-slug="update-mega-mind" data-color="#E63995" data-num="05" style="--tab-color:#E63995"><span class="tab-num">05</span>Update Mega Mind</button>
+    <button role="tab" id="tab-brief-agent" aria-controls="brief-agent" aria-selected="true" tabindex="0" data-slug="brief-agent" data-color="#564794" data-num="01" style="--tab-color:#564794"><span class="tab-num">01</span>Brief Agent</button>
+    <button role="tab" id="tab-community-update-agent" aria-controls="community-update-agent" aria-selected="false" tabindex="-1" data-slug="community-update-agent" data-color="#9a3eaa" data-num="02" style="--tab-color:#9a3eaa"><span class="tab-num">02</span>Community Update</button>
+    <button role="tab" id="tab-content-engineering-system" aria-controls="content-engineering-system" aria-selected="false" tabindex="-1" data-slug="content-engineering-system" data-color="#4a7d1f" data-num="03" style="--tab-color:#4a7d1f"><span class="tab-num">03</span>Content Engineering</button>
+    <button role="tab" id="tab-customer-journey-360" aria-controls="customer-journey-360" aria-selected="false" tabindex="-1" data-slug="customer-journey-360" data-color="#3c73a5" data-num="04" style="--tab-color:#3c73a5"><span class="tab-num">04</span>Customer Journey 360</button>
+    <button role="tab" id="tab-update-mega-mind" aria-controls="update-mega-mind" aria-selected="false" tabindex="-1" data-slug="update-mega-mind" data-color="#913b21" data-num="05" style="--tab-color:#913b21"><span class="tab-num">05</span>Update Mega Mind</button>
   </div>
 </div>
 
@@ -454,7 +459,7 @@
   <div class="project-header">
     <span class="big-num">01</span>
     <div class="project-header-text">
-      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 01</span>
+      <span class="small-kicker">Starter brief<span class="dot">✶</span>Project 01</span>
       <h2>Brief Agent / Generator</h2>
     </div>
   </div>
@@ -496,7 +501,7 @@
   <div class="project-header">
     <span class="big-num">02</span>
     <div class="project-header-text">
-      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 02</span>
+      <span class="small-kicker">Starter brief<span class="dot">✶</span>Project 02</span>
       <h2>Community Update Agent</h2>
     </div>
   </div>
@@ -537,7 +542,7 @@
   <div class="project-header">
     <span class="big-num">03</span>
     <div class="project-header-text">
-      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 03</span>
+      <span class="small-kicker">Starter brief<span class="dot">✶</span>Project 03</span>
       <h2>Content Engineering System</h2>
     </div>
   </div>
@@ -580,7 +585,7 @@
   <div class="project-header">
     <span class="big-num">04</span>
     <div class="project-header-text">
-      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 04</span>
+      <span class="small-kicker">Starter brief<span class="dot">✶</span>Project 04</span>
       <h2>Customer Journey 360</h2>
     </div>
   </div>
@@ -624,7 +629,7 @@
   <div class="project-header">
     <span class="big-num">05</span>
     <div class="project-header-text">
-      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 05</span>
+      <span class="small-kicker">Starter brief<span class="dot">✶</span>Project 05</span>
       <h2>Update Mega Mind</h2>
     </div>
   </div>
@@ -664,8 +669,8 @@
 </section>
 
 <footer class="site">
-  <span><span class="mark">Internal</span><span class="dot">✶</span>Hackathon Resource</span>
-  <span>Spring '26<span class="dot">✶</span>v1.0</span>
+  <span><span class="mark">Marketing AI Hackathon</span><span class="dot">✶</span>London</span>
+  <span>Spring '26<span class="dot">✶</span>Internal resource</span>
 </footer>
 
 </div>
