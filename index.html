@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hackathon Starter Guides</title>
+<meta name="description" content="Starter guides for the Marketing Spring Hackathon 2026 — hints for tackling each project with Glean, Gemini & Zapier.">
+<style>
+  :root {
+    --accent: #3b4cff;
+    --accent-soft: #eef0ff;
+    --accent-strong: #2a39d6;
+    --text: #14161c;
+    --text-muted: #5b6172;
+    --bg: #ffffff;
+    --bg-alt: #f7f8fb;
+    --border: #e6e8ef;
+    --callout-bg: #f3f5ff;
+    --callout-border: #d8defc;
+    --max-w: 680px;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(59,76,255,0.25); }
+  a:hover { border-bottom-color: var(--accent); }
+  a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  header.site {
+    margin-bottom: 32px;
+  }
+  header.site h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  header.site p.subtitle {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+
+  /* Tabs */
+  .tabs-wrap {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    padding: 12px 0;
+    margin: 24px 0 8px;
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  [role="tablist"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  [role="tab"] {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .15s ease, background-color .15s ease;
+  }
+  [role="tab"]:hover { color: var(--text); background: var(--bg-alt); }
+  [role="tab"][aria-selected="true"] {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  /* Panel */
+  [role="tabpanel"] {
+    padding-top: 24px;
+  }
+  [role="tabpanel"][hidden] { display: none; }
+
+  .guide h2 {
+    font-size: 28px;
+    line-height: 1.25;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+  .guide h3 {
+    font-size: 19px;
+    line-height: 1.3;
+    margin: 36px 0 10px;
+    color: var(--accent-strong);
+    letter-spacing: -0.005em;
+  }
+  .guide p { margin: 0 0 16px; }
+  .guide ul, .guide ol { margin: 0 0 16px; padding-left: 22px; }
+  .guide li { margin: 6px 0; }
+  .guide li > p { margin: 0 0 6px; }
+  .guide strong { color: var(--text); }
+  .guide hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  .callout {
+    background: var(--callout-bg);
+    border: 1px solid var(--callout-border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin: 0 0 20px;
+    font-size: 17px;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent-strong); }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 28px;
+  }
+  .pill {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 999px;
+    line-height: 1.4;
+  }
+
+  footer.site {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 32px 18px 64px; }
+    header.site h1 { font-size: 26px; }
+    .guide h2 { font-size: 24px; }
+    .guide h3 { font-size: 17px; }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="site">
+  <h1>Hackathon Starter Guides</h1>
+  <p class="subtitle">Five teams, five projects — hints for tackling them with Glean, Gemini &amp; Zapier.</p>
+</header>
+
+<div class="tabs-wrap">
+  <div role="tablist" aria-label="Hackathon project guides">
+    <button role="tab" id="tab-brief-agent" aria-controls="brief-agent" aria-selected="true" tabindex="0" data-slug="brief-agent">Brief Agent</button>
+    <button role="tab" id="tab-community-update-agent" aria-controls="community-update-agent" aria-selected="false" tabindex="-1" data-slug="community-update-agent">Community Update Agent</button>
+    <button role="tab" id="tab-content-engineering-system" aria-controls="content-engineering-system" aria-selected="false" tabindex="-1" data-slug="content-engineering-system">Content Engineering System</button>
+    <button role="tab" id="tab-customer-journey-360" aria-controls="customer-journey-360" aria-selected="false" tabindex="-1" data-slug="customer-journey-360">Customer Journey 360</button>
+    <button role="tab" id="tab-update-mega-mind" aria-controls="update-mega-mind" aria-selected="false" tabindex="-1" data-slug="update-mega-mind">Update Mega Mind</button>
+  </div>
+</div>
+
+<!-- BRIEF AGENT -->
+<section role="tabpanel" id="brief-agent" aria-labelledby="tab-brief-agent" class="guide" tabindex="0">
+  <h2>Brief Agent / Generator</h2>
+  <div class="callout"><strong>The problem in one line:</strong> Turn messy project context — rough notes, voice memos, half-formed asks — into a polished, Notion-ready creative brief through a guided conversation.</div>
+  <div class="pills">
+    <span class="pill">Claire</span>
+    <span class="pill">Dana</span>
+    <span class="pill">Meg</span>
+    <span class="pill">Michelle Griffin</span>
+  </div>
+
+  <h3>How to think about it</h3>
+  <p>A brief is a <em>structured extraction</em> problem. The information already exists in someone's head or scattered notes; the job is to pull it into a fixed shape (goal, audience, message, deliverables, timing, success metrics) and flag what's missing. The hard part isn't generation — it's asking the right follow-up questions and knowing when an answer is too vague to be useful.</p>
+
+  <h3>A suggested architecture</h3>
+  <ul>
+    <li><strong>Gemini as the interviewer.</strong> Give it the target brief schema as a system prompt and have it run a guided Q&amp;A: ask one question at a time, react to answers, ask smart follow-ups. Gemini's long context lets you paste in a voice-memo transcript or a wall of Slack messages and have it extract everything answerable before it even asks a question — so the human only fills gaps.</li>
+    <li><strong>Glean for the "pull in past examples and brand guidelines" requirement.</strong> Index your past briefs, brand guide, and messaging docs in Glean. When the agent has a draft goal/audience, query Glean for similar past briefs and feed the top matches back into Gemini as few-shot examples. This is what makes the output sound like <em>your</em> briefs, not a generic template.</li>
+    <li><strong>Zapier for delivery.</strong> Final step: a Zap that takes the structured brief and creates a formatted Notion page. Notion has a native Zapier integration — map each brief section to a Notion block or database property.</li>
+  </ul>
+
+  <h3>Concrete first steps</h3>
+  <ol>
+    <li>Write the brief schema down explicitly — every field, plus a one-line "what good looks like" for each. This single doc is the backbone of the whole agent.</li>
+    <li>Build the Gemini interview loop with a hardcoded sample of messy input. Get the conversation feeling right before adding any retrieval.</li>
+    <li>Add the "vague ask" detector: have Gemini score each filled field as specific / vague / missing and refuse to finalize until vague fields are addressed.</li>
+    <li>Layer in Glean retrieval for past examples once the core loop works.</li>
+    <li>Wire the Notion output Zap last.</li>
+  </ol>
+
+  <h3>Hints &amp; gotchas</h3>
+  <ul>
+    <li>Resist the urge to ask all questions upfront. The magic is <em>adaptive</em> follow-ups — a good answer to "who's the audience" should change the next question.</li>
+    <li>"Prescriptive vs descriptive" balance: have the agent explicitly ask the requester how much creative latitude the writer should have, and capture it as a field.</li>
+    <li>Voice memo support is mostly free — Gemini handles audio natively, or transcribe first. Don't over-build this.</li>
+    <li>Demo tip: show the same messy input going in and a clean Notion brief coming out. The contrast sells it.</li>
+  </ul>
+</section>
+
+<!-- COMMUNITY UPDATE AGENT -->
+<section role="tabpanel" id="community-update-agent" aria-labelledby="tab-community-update-agent" class="guide" tabindex="0" hidden>
+  <h2>Community Update Agent</h2>
+  <div class="callout"><strong>The problem in one line:</strong> Watch the <code>#typeform-release</code> Slack channel for product updates, then find community conversations where that news should be shared — keeping the community current and re-establishing Typeform as the source of truth.</div>
+  <div class="pills">
+    <span class="pill">Grace</span>
+    <span class="pill">James</span>
+    <span class="pill">Phoebe</span>
+    <span class="pill">Suzie</span>
+  </div>
+
+  <h3>How to think about it</h3>
+  <p>This is a <em>matching</em> problem with two halves: (1) detect a new release and understand what it actually changes, and (2) find community threads where that release answers an open question or corrects stale info. The second half is the interesting one — it's semantic search, not keyword matching. Someone asking "is there a way to do X" should match a release that adds X even if they never use the release's name.</p>
+
+  <h3>A suggested architecture</h3>
+  <ul>
+    <li><strong>Zapier as the trigger.</strong> A Zap on the Slack "new message in <code>#typeform-release</code>" event kicks off the whole flow. This is the cleanest possible entry point — no polling, no cron.</li>
+    <li><strong>Gemini to parse the release.</strong> Slack release notes are written for internal readers. Have Gemini summarize each update into a structured object: what changed, who it affects, what user problems it now solves, and a few paraphrased "questions this would answer." Those paraphrased questions become your search queries.</li>
+    <li><strong>Glean to find the conversations.</strong> If your community platform is indexed in Glean, query it with the paraphrased questions to surface relevant threads. Glean's semantic ranking is what catches the "asked it differently" cases. If the community <em>isn't</em> in Glean, that's your first scoping decision — see gotchas.</li>
+    <li><strong>Zapier to close the loop.</strong> Post the matches back into a review channel: "Release X looks relevant to these 3 threads — [links]." Keep a human in the loop before anything is posted publicly.</li>
+  </ul>
+
+  <h3>Concrete first steps</h3>
+  <ol>
+    <li>Pull 5–10 real past releases and, by hand, find the community threads each <em>should</em> have been shared in. This is your ground truth — you'll test everything against it.</li>
+    <li>Build the Gemini release-parser and check that its paraphrased questions actually resemble how customers ask.</li>
+    <li>Test retrieval against your hand-labeled set. Measure: of the threads you found manually, how many does the agent surface?</li>
+    <li>Wire the Slack trigger and the review-channel output.</li>
+  </ol>
+
+  <h3>Hints &amp; gotchas</h3>
+  <ul>
+    <li><strong>Confirm the community is searchable first.</strong> If your community platform isn't a Glean connector, you may need its API or a scraper — settle this in hour one, it changes the whole build.</li>
+    <li>Keep a human approval step. Auto-posting into community threads is a reputation risk; the agent should <em>recommend</em>, a person should <em>post</em>.</li>
+    <li>Stale matches are a real failure mode — an old thread may already be resolved. Have Gemini check thread recency/status before recommending.</li>
+    <li>Demo tip: take a genuine recent release and show the agent surfacing a real thread nobody had connected to it.</li>
+  </ul>
+</section>
+
+<!-- CONTENT ENGINEERING SYSTEM -->
+<section role="tabpanel" id="content-engineering-system" aria-labelledby="tab-content-engineering-system" class="guide" tabindex="0" hidden>
+  <h2>Content Engineering System</h2>
+  <div class="callout"><strong>The problem in one line:</strong> A centralized source of truth that dynamically feeds AI your brand guide, messaging docs, and content-type best practices — so contractors, agencies, and internal writers all work from the same inputs instead of material scattered across Figma, Notion, and Slides.</div>
+  <div class="pills">
+    <span class="pill">Jackie Pecquex</span>
+    <span class="pill">Nina</span>
+  </div>
+
+  <h3>How to think about it</h3>
+  <p>The reference Ahrefs post frames this well: content engineering is about making your brand context <em>retrievable by AI on demand</em>, rather than copy-pasted into prompts by whoever remembers where the doc lives. The deliverable isn't a document — it's a system where "write a blog intro" automatically pulls the right brand voice, the right content-type rules, and the right examples without the writer assembling them.</p>
+  <p>This is the most infrastructure-flavored of the five projects, which suits a 2-person team: less UI, more plumbing.</p>
+
+  <h3>A suggested architecture</h3>
+  <ul>
+    <li><strong>Glean as the source of truth.</strong> This is the core. Glean already indexes Notion, Slides/Drive, and Figma — so instead of <em>moving</em> all the scattered material, you make it <em>retrievable in place</em>. The win is that you don't have to migrate anything; you curate what Glean indexes and how it's tagged.</li>
+    <li><strong>A Glean Agent per content type.</strong> Build agents (or saved prompt scaffolds) for exec comms, blog, social, etc. Each one knows which messaging docs and best-practice guides are authoritative for that content type, and retrieves them on demand.</li>
+    <li><strong>Gemini as the generation layer.</strong> When a writer asks for a draft, Gemini receives the retrieved brand context + content-type rules as grounding. Long context means you can stuff in the full brand guide rather than a summary.</li>
+    <li><strong>Zapier for freshness.</strong> A scheduled Zap can check whether key source docs changed and flag the system (or a Slack channel) when the "source of truth" might be drifting from what's indexed.</li>
+  </ul>
+
+  <h3>Concrete first steps</h3>
+  <ol>
+    <li>Inventory the scattered material: list every brand guide, messaging doc, and best-practice file, and where it lives. Decide which is <em>authoritative</em> where versions conflict — this curation is the real work.</li>
+    <li>Confirm what Glean already indexes and fill the gaps.</li>
+    <li>Build one content-type agent end to end (blog is a good first pick) before generalizing.</li>
+    <li>Define the retrieval contract: given a content-type request, what exactly gets pulled and in what priority order.</li>
+  </ol>
+
+  <h3>Hints &amp; gotchas</h3>
+  <ul>
+    <li>The hard part is <em>curation</em>, not <em>technology</em>. Conflicting and outdated docs are the enemy — a system that confidently retrieves the wrong brand guide is worse than no system.</li>
+    <li>Don't try to cover all content types in the hackathon. One excellent type beats six mediocre ones.</li>
+    <li>Make "who owns this source doc" explicit — a source of truth with no owner goes stale immediately.</li>
+    <li>Demo tip: show the same content request answered by a generic model vs. your grounded system, side by side. The on-brand difference is the pitch.</li>
+  </ul>
+</section>
+
+<!-- CUSTOMER JOURNEY 360 -->
+<section role="tabpanel" id="customer-journey-360" aria-labelledby="tab-customer-journey-360" class="guide" tabindex="0" hidden>
+  <h2>Customer Journey 360</h2>
+  <div class="callout"><strong>The problem in one line:</strong> A unified view of everything a single customer receives across Iterable, Salesloft, Zendesk, in-app messages, and other touchpoints — so field teams can prep for calls and QBRs, investigate self-serve behavior, spot duplicate comms, and audit self-serve-to-sales handoffs using real examples instead of theory.</div>
+  <div class="pills">
+    <span class="pill">Josh Rosenblatt</span>
+    <span class="pill">nico</span>
+  </div>
+
+  <h3>How to think about it</h3>
+  <p>This is a <em>data aggregation and timeline</em> problem. Each tool holds one slice of what a customer experienced; the value is stitching them into a single chronological story for one customer. Start by nailing the timeline view for <em>one</em> customer before worrying about scale or polish.</p>
+
+  <h3>A suggested architecture</h3>
+  <ul>
+    <li><strong>Zapier to gather the touchpoints.</strong> Zapier connects to Iterable, Salesloft, Zendesk and more. The cleanest hackathon scope: pick one customer (or a small set), and use Zapier to pull their recent events from each tool into a single store — a Google Sheet is perfectly fine for a hackathon.</li>
+    <li><strong>Gemini to build the narrative.</strong> Feed the merged, timestamped events to Gemini and have it produce: a clean chronological timeline, a plain-English summary ("here's what this customer has experienced in the last 60 days"), and flags for duplicate or conflicting comms. Gemini's long context handles a busy customer's full event history in one pass.</li>
+    <li><strong>Glean for context the event logs don't carry.</strong> Glean can surface related Zendesk tickets, internal Slack discussion, and account notes about that customer — the qualitative layer that explains <em>why</em> behind the events.</li>
+    <li><strong>Output:</strong> a prep doc or dashboard a CSM can read before a call. Could be a generated Google Doc (via Zapier) or a simple page.</li>
+  </ul>
+
+  <h3>Concrete first steps</h3>
+  <ol>
+    <li>Pick one real customer with a rich, messy history — a good demo subject.</li>
+    <li>Get raw event exports from each of the 5 tools for that customer, by hand if needed. Don't automate collection until you know what the data looks like.</li>
+    <li>Define a common event shape: timestamp, channel, type, summary. Normalizing into this is the core work.</li>
+    <li>Build the Gemini timeline + duplicate-detection step.</li>
+    <li>Automate collection with Zapier last, once the shape is proven.</li>
+  </ol>
+
+  <h3>Hints &amp; gotchas</h3>
+  <ul>
+    <li>Timestamp normalization across five tools (time zones, formats) is the unglamorous part that will eat time — budget for it.</li>
+    <li>"Duplicate comms" detection is a high-value, demoable feature — two tools emailing the same customer the same week is exactly the kind of finding that lands.</li>
+    <li>Don't try to integrate all touchpoints live. Three tools, done well, beats five half-wired.</li>
+    <li>Demo tip: show a real customer's timeline and point to a genuine duplicate or a rough handoff. Concrete beats abstract.</li>
+    <li>Privacy: use a real but internal-friendly account, and don't surface anything sensitive in a shared demo.</li>
+  </ul>
+</section>
+
+<!-- UPDATE MEGA MIND -->
+<section role="tabpanel" id="update-mega-mind" aria-labelledby="tab-update-mega-mind" class="guide" tabindex="0" hidden>
+  <h2>Update Mega Mind</h2>
+  <div class="callout"><strong>The problem in one line:</strong> A system fed with project tooling, experiment updates, and status updates that can be queried to auto-generate recurring WBR, MBR, and other status decks — eliminating the repetitive deck-building that's currently eating into evenings.</div>
+  <div class="pills">
+    <span class="pill">Jasmine Howard</span>
+    <span class="pill">Kay-Kay</span>
+    <span class="pill">Xavier Mangin</span>
+  </div>
+
+  <h3>How to think about it</h3>
+  <p>Two distinct jobs here, and it helps to separate them: (1) <em>gather and synthesize</em> what happened this week/month, and (2) <em>render</em> it into the recurring deck format. Most of the value and most of the difficulty is in job 1 — pulling scattered updates into an accurate, well-summarized status. Job 2 is templating.</p>
+  <p>Scope tip: a WBR <em>content doc</em> that's accurate and complete is a huge win on its own. A fully formatted slide deck is the stretch goal, not the starting point.</p>
+
+  <h3>A suggested architecture</h3>
+  <ul>
+    <li><strong>Glean to gather the inputs.</strong> Project status, experiment updates, and tooling notes live across Notion, Slack, Jira, docs. Glean indexes those — so the system can query "what changed on Project X this week" rather than you wiring up each source individually.</li>
+    <li><strong>Gemini to synthesize.</strong> Feed Gemini the retrieved updates plus the structure of your WBR/MBR (sections, metrics, narrative style). Have it produce the status writeup section by section. Long context lets you pass a whole week of raw updates at once. Give it last cycle's deck as a style example so the output matches house format.</li>
+    <li><strong>Zapier for cadence and delivery.</strong> A scheduled Zap runs the generation every Monday (WBR) or month-start (MBR), and delivers the result — into a Google Doc, a Slides deck, or a Slack post for review.</li>
+    <li><strong>Slides rendering (stretch):</strong> Zapier can create Google Slides from a template; or generate structured content and have a script populate a Slides template. Treat this as the last mile.</li>
+  </ul>
+
+  <h3>Concrete first steps</h3>
+  <ol>
+    <li>Collect 2–3 past WBRs/MBRs and reverse-engineer the template: exact sections, what data each needs, the tone.</li>
+    <li>List every input source a human currently checks to build the deck — that list is your Glean retrieval scope.</li>
+    <li>Build the Gemini synthesis step against <em>one</em> past period and compare its output to the deck a human actually produced. Tune until close.</li>
+    <li>Add the scheduled Zapier trigger.</li>
+    <li>Tackle slide formatting only if 1–4 are solid.</li>
+  </ol>
+
+  <h3>Hints &amp; gotchas</h3>
+  <ul>
+    <li>Accuracy beats formatting every time. A perfectly styled deck with a wrong metric is worse than a plain doc that's correct. Have the system cite where each claim came from.</li>
+    <li>The system can't invent updates that weren't written down — part of the pitch is that it gently surfaces "Project Y had no updates this week," which is itself useful signal.</li>
+    <li>Don't sink the hackathon into pixel-perfect slides. Get the synthesis excellent; render simply.</li>
+    <li>Demo tip: generate this week's actual WBR live and let the team compare it to what they'd have written by hand.</li>
+  </ul>
+</section>
+
+<footer class="site">Internal hackathon resource</footer>
+
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) {
+    return document.getElementById(t.getAttribute('aria-controls'));
+  });
+
+  function activate(slug, opts) {
+    opts = opts || {};
+    var idx = -1;
+    for (var i = 0; i < tabs.length; i++) {
+      if (tabs[i].dataset.slug === slug) { idx = i; break; }
+    }
+    if (idx === -1) idx = 0;
+
+    tabs.forEach(function (t, i) {
+      var selected = i === idx;
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      t.setAttribute('tabindex', selected ? '0' : '-1');
+      panels[i].hidden = !selected;
+    });
+
+    if (opts.updateHash !== false) {
+      var newHash = '#' + tabs[idx].dataset.slug;
+      if (location.hash !== newHash) {
+        history.replaceState(null, '', newHash);
+      }
+    }
+    if (opts.focusTab) tabs[idx].focus();
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () {
+      activate(tab.dataset.slug);
+    });
+    tab.addEventListener('keydown', function (e) {
+      var next = -1;
+      if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      if (next !== -1) {
+        e.preventDefault();
+        activate(tabs[next].dataset.slug, { focusTab: true });
+      }
+    });
+  });
+
+  window.addEventListener('hashchange', function () {
+    var slug = (location.hash || '').replace(/^#/, '');
+    if (slug) activate(slug, { updateHash: false });
+  });
+
+  var initial = (location.hash || '').replace(/^#/, '') || tabs[0].dataset.slug;
+  activate(initial, { updateHash: false });
+})();
+</script>
+
+</body>
+</html>
