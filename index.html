@@ -417,12 +417,12 @@
 
 <header class="site">
   <div class="hero-row">
-    <span class="kicker">Marketing AI Hackathon</span>
+    <span class="kicker">Typeform Marketing</span>
     <span class="sticker">Spring '26</span>
     <span class="sticker alt">London</span>
   </div>
-  <h1 class="display">The starter <em>briefs</em>.</h1>
-  <p class="subtitle">Five briefs — one per project team. How to think about it, where Glean and Gemini fit, and what to skip.</p>
+  <h1 class="display">Marketing <em>AI</em> Hackathon.</h1>
+  <p class="subtitle">Five starter briefs — one per project team. How to think about it, where Glean and Gemini fit, and what to skip.</p>
 </header>
 
 <div class="marquee" aria-hidden="true">
@@ -475,7 +475,7 @@
   <ul>
     <li><strong>Gemini as the interviewer.</strong> Give Gemini your brief template as its instructions and let it run a guided Q&amp;A — ask one question, react to the answer, ask a smart follow-up. The trick: Gemini can take a long voice-memo transcript or a wall of Slack messages and pull out everything answerable before it even asks a question. The human only fills the gaps.</li>
     <li><strong>Glean for the "make it sound like our briefs" part.</strong> Glean already has your past briefs, brand guide, and messaging docs indexed. Once the agent has a rough goal and audience, ask Glean for similar past briefs and feed those back to Gemini as examples. This is what makes the output sound like <em>your</em> briefs, not a generic AI template.</li>
-    <li><strong>Optional: Zapier for delivery.</strong> If you have Zapier, the final step can drop the brief straight into Notion. If not, copy-paste into Notion is totally fine for the demo — don't burn time here.</li>
+    <li><strong>Glean Agent to deliver it.</strong> Build the whole thing as a Glean agent. Glean's agent builder includes a write action that can post the finished brief straight into Slack (DM or channel) or create a Google Doc — no Zapier needed. If you specifically want Notion, that takes a custom Glean action against Notion's API, or just copy-paste. Don't burn time on delivery — the magic is in the interview.</li>
   </ul>
 
   <h3>Concrete first steps</h3>
@@ -484,7 +484,7 @@
     <li>Build the Gemini interview loop with a hardcoded sample of messy input. Get the conversation feeling right before you add anything else.</li>
     <li>Add a "vague answer" check: have Gemini grade each field as specific / vague / missing, and refuse to finalize until the vague ones are addressed.</li>
     <li>Layer in Glean to pull past examples once the core loop feels good.</li>
-    <li>Wire up Notion output last (and only if Zapier is available — otherwise paste).</li>
+    <li>Wire up delivery last — a Glean write action into Slack or Google Doc is cleanest. Save Notion for stretch.</li>
   </ol>
 
   <h3>Hints &amp; gotchas</h3>
@@ -517,7 +517,7 @@
   <ul>
     <li><strong>Gemini to read the release.</strong> Slack release notes are written for internal eyes. Have Gemini turn each one into a clean summary: what changed, who it affects, what user problems it now solves, plus a few paraphrased "questions this would answer." Those paraphrased questions become your search queries.</li>
     <li><strong>Glean to find the conversations.</strong> If your community platform is indexed in Glean, query it with those paraphrased questions. Glean is smart enough to surface threads where the customer asked the same thing in totally different words — that's the whole game. (If the community isn't in Glean yet, that's your very first decision — see gotchas.)</li>
-    <li><strong>Optional: Zapier for the trigger and the close-the-loop step.</strong> If you have Zapier, a "new message in <code>#typeform-release</code>" trigger can kick everything off, and a follow-up Zap can post matches into a review channel. If you don't, run the agent manually when a release lands — works perfectly for the demo.</li>
+    <li><strong>Run it as a scheduled Glean agent.</strong> Glean's scheduled triggers let an agent run automatically on a cadence (daily, weekly, whatever) in the background. So: scheduled agent → reads recent <code>#typeform-release</code> messages → runs the matching → posts results into a review channel using Glean's built-in Slack write action. The whole loop sits inside Glean, no Zapier required. (For the hackathon demo, you can also just trigger it manually when a release lands — keep the Slack-post step regardless, since that's what makes it feel real.)</li>
   </ul>
 
   <h3>Concrete first steps</h3>
@@ -525,7 +525,7 @@
     <li>Pull 5–10 real past releases and, by hand, find the community threads each <em>should</em> have been shared in. This is your ground truth — you'll grade everything against it.</li>
     <li>Build the Gemini release-reader and check that its paraphrased questions actually resemble how customers ask things.</li>
     <li>Test Glean retrieval against your hand-labeled set: of the threads you found manually, how many does the agent surface?</li>
-    <li>Wire up the trigger (Zapier if you have it, manual if not) and the review output.</li>
+    <li>Wire up the Glean Slack write action to post matches to a review channel. Add the schedule (or trigger) last.</li>
   </ol>
 
   <h3>Hints &amp; gotchas</h3>
@@ -560,7 +560,7 @@
     <li><strong>Glean as the source of truth.</strong> This is the heart of the project. Glean already indexes Notion, Slides, Drive, and Figma — so instead of <em>moving</em> all the scattered brand material, you make it <em>findable in place</em>. The win is that you don't have to migrate anything; you just curate what Glean indexes and how it's tagged.</li>
     <li><strong>A Glean Agent per content type.</strong> Build a separate agent for blog, exec comms, social, and so on. Each one knows which docs are authoritative for that content type and pulls them on demand.</li>
     <li><strong>Gemini as the writing layer.</strong> When a writer asks for a draft, Gemini gets the brand context plus content-type rules as background, then writes. Long context means you can hand it the full brand guide rather than a stripped-down summary.</li>
-    <li><strong>Optional: Zapier to keep things fresh.</strong> If you have Zapier, a scheduled Zap can check whether key source docs have changed and ping a Slack channel when something looks like it's drifting. Without Zapier, a manual quarterly review of the source docs works fine.</li>
+    <li><strong>A scheduled Glean agent for freshness.</strong> Glean's scheduled triggers can run a "check the source docs" agent weekly or monthly and post into a Slack channel when something looks like it's drifting — fully native to Glean, no Zapier needed. If you don't want to set up scheduling, a manual quarterly review works fine too.</li>
   </ul>
 
   <h3>Concrete first steps</h3>
@@ -601,8 +601,8 @@
   <ul>
     <li><strong>Glean for the qualitative layer.</strong> Glean already indexes Zendesk tickets, internal Slack discussion, and account notes — so for any customer, you can ask "what do we know about them?" and get the context the event logs don't carry. This is the layer that explains the <em>why</em> behind what happened.</li>
     <li><strong>Gemini to build the narrative.</strong> Feed Gemini the combined, timestamped events and have it produce: a clean chronological timeline, a plain-English summary ("here's what this customer has been through in the last 60 days"), and flags for duplicate or conflicting messages. Gemini's long context can handle a busy customer's full history in one pass.</li>
-    <li><strong>Pulling the touchpoint data.</strong> For the hackathon, the simplest path is to export events for one chosen customer by hand from each tool (Iterable, Salesloft, Zendesk) into a Google Sheet. <strong>Optional: Zapier</strong> can automate this if you have access, but don't sink time into it until you've seen what the data looks like.</li>
-    <li><strong>Output.</strong> A prep doc or simple page a CSM can read before a call. A generated Google Doc is plenty for the demo.</li>
+    <li><strong>Pulling the touchpoint data.</strong> Glean already indexes Zendesk and Slack, so those come for free. For Iterable, Salesloft, and other tools that aren't Glean-native, the cleanest hackathon path is a hand export for one customer into a Google Sheet. Zapier can automate it if you have access — but don't sink time there until you've seen what the data looks like.</li>
+    <li><strong>Output.</strong> A prep doc a CSM can read before a call. Build it as a Glean agent and use the Google Doc or Slack write action — Glean will drop the summary into Drive or post it to a channel for you, no extra glue required.</li>
   </ul>
 
   <h3>Concrete first steps</h3>
@@ -646,7 +646,7 @@
   <ul>
     <li><strong>Glean to gather the inputs.</strong> Project status, experiment updates, and tooling notes live across Notion, Slack, Jira, docs. Glean already indexes those — so the system can ask "what changed on Project X this week?" rather than you wiring up each source by hand.</li>
     <li><strong>Gemini to write it up.</strong> Feed Gemini the retrieved updates plus the structure of your WBR/MBR (sections, metrics, narrative style). Have it produce the status section by section. Long context lets you pass a whole week of raw updates at once. Hand it last cycle's deck as a style guide so the output matches house format.</li>
-    <li><strong>Optional: Zapier for cadence and delivery.</strong> If you have Zapier, a scheduled Zap can run the generation every Monday (WBR) or month-start (MBR) and drop the result into a Google Doc or Slack channel. Without Zapier, running it manually on the same cadence is genuinely fine for the hackathon — and even after.</li>
+    <li><strong>Glean's scheduled triggers for cadence + delivery.</strong> This is exactly what Glean's scheduled-agent feature was built for. Set up a Glean agent that runs every Monday (WBR) or month-start (MBR), pulls the right updates via Glean's index, hands them to Gemini to write, and then posts the result to Slack or drops it into a Google Doc using a built-in write action. No Zapier required, no separate cron. Two things to know: scheduled Glean agents need at least one write action attached (the Slack post or doc creation counts), and your admin has to have scheduling enabled (it's off by default).</li>
     <li><strong>Slide rendering (stretch).</strong> Treat slide formatting as the last mile. A correct doc beats a pretty deck. Tackle slides only if everything else feels solid.</li>
   </ul>
 
@@ -655,7 +655,7 @@
     <li>Collect 2–3 past WBRs/MBRs and reverse-engineer the template: exact sections, what data each needs, the tone.</li>
     <li>List every input source a human currently checks to build the deck — that list is your Glean retrieval scope.</li>
     <li>Build the Gemini synthesis step on <em>one</em> past period and compare its output to the deck a human actually produced. Tune until close.</li>
-    <li>Add cadence + delivery (Zapier optional).</li>
+    <li>Wire it up as a scheduled Glean agent with a Slack or Google Doc write action.</li>
     <li>Tackle slide formatting only if 1–4 are solid.</li>
   </ol>
 
