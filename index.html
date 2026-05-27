@@ -3,27 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hackathon Starter Guides</title>
-<meta name="description" content="Starter guides for the Marketing Spring Hackathon 2026 — hints for tackling each project with Glean and Gemini.">
+<title>Marketing Spring Hackathon · Starter Kit</title>
+<meta name="description" content="Five projects, five quick starter guides — how to think about each, where Glean and Gemini fit, and what to skip.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
   :root {
-    --bg: #FFFCF7;
-    --surface: #FFFFFF;
-    --text: #14161C;
-    --text-muted: #595862;
-    --border: #ECE6DA;
-    --border-strong: #D9D2C3;
-    --callout-bg: #FFF6E0;
-    --callout-border: #FFE8AE;
-    --accent: #14161C;
-    --accent-on: #FFFCF7;
-    --highlight: #F5C400;
-    --link-underline: rgba(20, 22, 28, 0.25);
-    --max-w: 720px;
-    --radius: 10px;
+    --bg: #FBF4E4;
+    --bg-strong: #F5EAD0;
+    --text: #15131A;
+    --text-muted: #5A5560;
+    --border: rgba(21,19,26,0.12);
+    --border-strong: rgba(21,19,26,0.22);
+    --project-color: #FF5A36;
+    --on-color: #FBF4E4;
+    --max-w: 760px;
+    --radius: 14px;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
@@ -34,16 +30,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition: --project-color .35s ease;
+    overflow-x: hidden;
   }
-  ::selection { background: var(--highlight); color: var(--text); }
+  ::selection { background: var(--project-color); color: var(--on-color); }
 
   a {
     color: var(--text);
     text-decoration: none;
-    border-bottom: 1px solid var(--link-underline);
-    transition: border-color .15s ease;
+    border-bottom: 1.5px solid var(--project-color);
+    transition: color .15s ease;
+    font-weight: 500;
   }
-  a:hover { border-bottom-color: var(--text); }
+  a:hover { color: var(--project-color); }
   a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
     outline: 2px solid var(--text);
     outline-offset: 3px;
@@ -52,190 +51,361 @@
 
   code {
     font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
-    font-size: 0.92em;
-    background: rgba(20,22,28,0.06);
-    padding: 1px 6px;
+    font-size: 0.9em;
+    background: rgba(21,19,26,0.08);
+    padding: 2px 7px;
     border-radius: 4px;
   }
 
   .page {
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 64px 28px 96px;
+    padding: 40px 28px 96px;
+    position: relative;
   }
 
-  /* Header */
+  /* ===== HERO ===== */
   header.site {
-    margin-bottom: 40px;
+    margin: 24px 0 36px;
+    position: relative;
   }
-  .eyebrow {
-    display: inline-block;
-    font-size: 13px;
+  .hero-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text);
-    background: var(--highlight);
-    padding: 4px 10px;
+  }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
     border-radius: 999px;
-    margin-bottom: 20px;
+    background: var(--project-color);
+    transition: background .35s ease;
   }
-  header.site h1 {
+  .sticker {
+    display: inline-block;
+    background: var(--text);
+    color: var(--bg);
+    padding: 7px 14px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+    font-family: 'Inter', sans-serif;
+  }
+  .sticker.alt {
+    background: var(--project-color);
+    color: var(--on-color);
+    transform: rotate(2.5deg);
+    transition: background .35s ease;
+  }
+
+  header.site h1.display {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-variation-settings: "opsz" 96, "wdth" 100;
+    font-weight: 800;
+    font-size: clamp(48px, 9vw, 92px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 0 0 22px;
+    color: var(--text);
+  }
+  header.site h1.display em {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-weight: 400;
-    font-size: 56px;
-    line-height: 1.02;
-    letter-spacing: -0.015em;
-    margin: 0 0 14px;
-  }
-  header.site h1 em {
     font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--project-color);
+    transition: color .35s ease;
   }
   header.site p.subtitle {
     margin: 0;
     color: var(--text-muted);
     font-size: 18px;
     line-height: 1.5;
-    max-width: 560px;
+    max-width: 580px;
   }
 
-  /* Tabs */
+  /* ===== MARQUEE ===== */
+  .marquee {
+    margin: 40px -28px 0;
+    background: var(--text);
+    color: var(--bg);
+    overflow: hidden;
+    padding: 14px 0;
+    border-radius: 0;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 42s linear infinite;
+    gap: 40px;
+    padding-left: 40px;
+    will-change: transform;
+  }
+  .marquee-track span {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .marquee-track .star {
+    color: var(--project-color);
+    transition: color .35s ease;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== TABS ===== */
   .tabs-wrap {
     position: sticky;
     top: 0;
     background: var(--bg);
-    padding: 14px 0 14px;
-    margin: 36px 0 0;
+    padding: 18px 0 16px;
+    margin: 28px -28px 0;
+    padding-left: 28px;
+    padding-right: 28px;
     border-bottom: 1px solid var(--border);
     z-index: 10;
   }
   [role="tablist"] {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     overflow-x: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
+  [role="tablist"]::-webkit-scrollbar { display: none; }
   [role="tab"] {
     appearance: none;
     background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-muted);
+    border: 1.5px solid var(--border-strong);
+    color: var(--text);
     font: inherit;
-    font-family: inherit;
-    font-size: 14.5px;
-    font-weight: 500;
-    padding: 8px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 16px;
     border-radius: 999px;
     cursor: pointer;
     white-space: nowrap;
-    transition: color .15s ease, background-color .15s ease, border-color .15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  [role="tab"] .tab-num {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.7;
   }
   [role="tab"]:hover {
-    color: var(--text);
-    border-color: var(--border-strong);
+    background: var(--bg-strong);
+    transform: translateY(-1px);
   }
   [role="tab"][aria-selected="true"] {
-    color: var(--accent-on);
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--tab-color);
+    color: #FBF4E4;
+    border-color: var(--tab-color);
   }
-  [role="tab"][aria-selected="true"]:hover { color: var(--accent-on); }
+  [role="tab"][aria-selected="true"] .tab-num { opacity: 0.85; }
+  [role="tab"][aria-selected="true"]:hover { background: var(--tab-color); }
 
-  /* Panel */
-  [role="tabpanel"] {
-    padding-top: 36px;
-  }
+  /* ===== PANEL / GUIDE ===== */
+  [role="tabpanel"] { padding-top: 40px; }
   [role="tabpanel"][hidden] { display: none; }
 
-  .guide h2 {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-weight: 400;
-    font-size: 44px;
-    line-height: 1.08;
-    letter-spacing: -0.01em;
-    margin: 0 0 20px;
+  .project-header {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    position: relative;
   }
-  .guide h3 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+  .big-num {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(72px, 14vw, 132px);
+    line-height: 0.85;
+    color: var(--project-color);
+    transition: color .35s ease;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+  .project-header-text {
+    padding-top: 6px;
+  }
+  .small-kicker {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin: 44px 0 14px;
-    color: var(--text);
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .small-kicker .dot {
+    color: var(--project-color);
+    transition: color .35s ease;
+    margin: 0 6px;
+  }
+  .guide h2 {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-variation-settings: "opsz" 60, "wdth" 100;
+    font-weight: 700;
+    font-size: clamp(34px, 5.5vw, 52px);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    margin: 0;
+  }
+
+  .guide h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 48px 0 18px;
+    color: var(--project-color);
+    transition: color .35s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .guide h3::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 2px;
+    background: var(--project-color);
+    transition: background .35s ease;
+    border-radius: 2px;
   }
   .guide p { margin: 0 0 18px; }
-  .guide ul, .guide ol { margin: 0 0 18px; padding-left: 22px; }
-  .guide li { margin: 8px 0; padding-left: 4px; }
-  .guide li > p { margin: 0 0 6px; }
+  .guide ul, .guide ol { margin: 0 0 18px; padding-left: 0; list-style: none; counter-reset: list; }
+  .guide ul li, .guide ol li {
+    position: relative;
+    padding-left: 28px;
+    margin: 12px 0;
+  }
+  .guide ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    background: var(--project-color);
+    transition: background .35s ease;
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+  .guide ol li {
+    counter-increment: list;
+  }
+  .guide ol li::before {
+    content: counter(list, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--project-color);
+    transition: color .35s ease;
+    line-height: 1.4;
+    font-weight: 400;
+  }
   .guide strong { color: var(--text); font-weight: 600; }
   .guide em { font-style: italic; }
 
   .callout {
-    background: var(--callout-bg);
-    border: 1px solid var(--callout-border);
+    background: var(--bg-strong);
+    border: 1.5px solid var(--text);
     border-radius: var(--radius);
-    padding: 18px 20px;
-    margin: 0 0 24px;
-    font-size: 17px;
-    line-height: 1.55;
+    padding: 20px 22px 22px;
+    margin: 28px 0 32px;
+    font-size: 18px;
+    line-height: 1.5;
     color: var(--text);
+    position: relative;
+    box-shadow: 6px 6px 0 var(--project-color);
+    transition: box-shadow .35s ease;
   }
   .callout .label {
     display: block;
-    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text);
-    opacity: 0.7;
-    margin-bottom: 6px;
-  }
-
-  .pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 0 0 32px;
-  }
-  .pill {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--border-strong);
-    padding: 4px 11px;
-    border-radius: 999px;
-    line-height: 1.4;
+    color: var(--project-color);
+    transition: color .35s ease;
+    margin-bottom: 8px;
   }
 
   footer.site {
-    margin-top: 80px;
+    margin-top: 96px;
     padding-top: 28px;
-    border-top: 1px solid var(--border);
+    border-top: 1.5px dashed var(--border-strong);
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 13px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
-  }
-  footer.site .mark {
+    gap: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     font-weight: 600;
-    color: var(--text);
+  }
+  footer.site .mark { color: var(--text); }
+  footer.site .dot {
+    color: var(--project-color);
+    transition: color .35s ease;
+    margin: 0 6px;
   }
 
-  @media (max-width: 600px) {
-    .page { padding: 36px 20px 64px; }
-    header.site h1 { font-size: 40px; }
-    header.site p.subtitle { font-size: 16px; }
-    .guide h2 { font-size: 32px; }
-    .guide h3 { font-size: 13px; margin-top: 36px; }
+  @media (max-width: 640px) {
+    .page { padding: 24px 20px 64px; }
+    header.site h1.display { font-size: clamp(40px, 12vw, 64px); }
+    .marquee { margin-left: -20px; margin-right: -20px; }
+    .tabs-wrap { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+    .project-header { gap: 16px; }
+    .big-num { font-size: 72px; }
+    .guide h2 { font-size: 30px; }
+    .callout { padding: 16px 18px; font-size: 16px; box-shadow: 4px 4px 0 var(--project-color); }
     body { font-size: 16px; }
-    .callout { padding: 14px 16px; font-size: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    * { transition-duration: 0.01ms !important; }
   }
 </style>
 </head>
@@ -243,33 +413,54 @@
 <div class="page">
 
 <header class="site">
-  <span class="eyebrow">Hackathon 2026</span>
-  <h1>Starter <em>guides</em> for five teams.</h1>
-  <p class="subtitle">A quick hint sheet for each project — how to think about it, where Glean and Gemini fit, and what to skip.</p>
+  <div class="hero-row">
+    <span class="kicker">Marketing Spring Hackathon</span>
+    <span class="sticker">Spring '26</span>
+    <span class="sticker alt">v1.0</span>
+  </div>
+  <h1 class="display">Pick your <em>project</em>.</h1>
+  <p class="subtitle">Five starter guides — how to think about each project, where Glean and Gemini fit, and what to skip. Read the one you're on. Ignore the rest.</p>
 </header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Five projects</span><span class="star">✶</span>
+    <span>Glean</span><span class="star">✶</span>
+    <span>Gemini</span><span class="star">✶</span>
+    <span>Zapier (optional)</span><span class="star">✶</span>
+    <span>Build · Ship · Demo</span><span class="star">✶</span>
+    <span>Marketing Spring '26</span><span class="star">✶</span>
+    <span>Five projects</span><span class="star">✶</span>
+    <span>Glean</span><span class="star">✶</span>
+    <span>Gemini</span><span class="star">✶</span>
+    <span>Zapier (optional)</span><span class="star">✶</span>
+    <span>Build · Ship · Demo</span><span class="star">✶</span>
+    <span>Marketing Spring '26</span><span class="star">✶</span>
+  </div>
+</div>
 
 <div class="tabs-wrap">
   <div role="tablist" aria-label="Hackathon project guides">
-    <button role="tab" id="tab-brief-agent" aria-controls="brief-agent" aria-selected="true" tabindex="0" data-slug="brief-agent">Brief Agent</button>
-    <button role="tab" id="tab-community-update-agent" aria-controls="community-update-agent" aria-selected="false" tabindex="-1" data-slug="community-update-agent">Community Update Agent</button>
-    <button role="tab" id="tab-content-engineering-system" aria-controls="content-engineering-system" aria-selected="false" tabindex="-1" data-slug="content-engineering-system">Content Engineering System</button>
-    <button role="tab" id="tab-customer-journey-360" aria-controls="customer-journey-360" aria-selected="false" tabindex="-1" data-slug="customer-journey-360">Customer Journey 360</button>
-    <button role="tab" id="tab-update-mega-mind" aria-controls="update-mega-mind" aria-selected="false" tabindex="-1" data-slug="update-mega-mind">Update Mega Mind</button>
+    <button role="tab" id="tab-brief-agent" aria-controls="brief-agent" aria-selected="true" tabindex="0" data-slug="brief-agent" data-color="#FF5A36" data-num="01" style="--tab-color:#FF5A36"><span class="tab-num">01</span>Brief Agent</button>
+    <button role="tab" id="tab-community-update-agent" aria-controls="community-update-agent" aria-selected="false" tabindex="-1" data-slug="community-update-agent" data-color="#5B4BFF" data-num="02" style="--tab-color:#5B4BFF"><span class="tab-num">02</span>Community Update</button>
+    <button role="tab" id="tab-content-engineering-system" aria-controls="content-engineering-system" aria-selected="false" tabindex="-1" data-slug="content-engineering-system" data-color="#0E8C7A" data-num="03" style="--tab-color:#0E8C7A"><span class="tab-num">03</span>Content Engineering</button>
+    <button role="tab" id="tab-customer-journey-360" aria-controls="customer-journey-360" aria-selected="false" tabindex="-1" data-slug="customer-journey-360" data-color="#2D8FE3" data-num="04" style="--tab-color:#2D8FE3"><span class="tab-num">04</span>Customer Journey 360</button>
+    <button role="tab" id="tab-update-mega-mind" aria-controls="update-mega-mind" aria-selected="false" tabindex="-1" data-slug="update-mega-mind" data-color="#E63995" data-num="05" style="--tab-color:#E63995"><span class="tab-num">05</span>Update Mega Mind</button>
   </div>
 </div>
 
 <!-- BRIEF AGENT -->
 <section role="tabpanel" id="brief-agent" aria-labelledby="tab-brief-agent" class="guide" tabindex="0">
-  <h2>Brief Agent / Generator</h2>
+  <div class="project-header">
+    <span class="big-num">01</span>
+    <div class="project-header-text">
+      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 01</span>
+      <h2>Brief Agent / Generator</h2>
+    </div>
+  </div>
   <div class="callout">
     <span class="label">The problem in one line</span>
     Turn messy project context — rough notes, voice memos, half-formed asks — into a polished, Notion-ready creative brief through a guided conversation.
-  </div>
-  <div class="pills">
-    <span class="pill">Claire</span>
-    <span class="pill">Dana</span>
-    <span class="pill">Meg</span>
-    <span class="pill">Michelle Griffin</span>
   </div>
 
   <h3>How to think about it</h3>
@@ -302,16 +493,16 @@
 
 <!-- COMMUNITY UPDATE AGENT -->
 <section role="tabpanel" id="community-update-agent" aria-labelledby="tab-community-update-agent" class="guide" tabindex="0" hidden>
-  <h2>Community Update Agent</h2>
+  <div class="project-header">
+    <span class="big-num">02</span>
+    <div class="project-header-text">
+      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 02</span>
+      <h2>Community Update Agent</h2>
+    </div>
+  </div>
   <div class="callout">
     <span class="label">The problem in one line</span>
     Watch the <code>#typeform-release</code> Slack channel for product updates, then find community conversations where that news should be shared — keeping the community current and re-establishing Typeform as the source of truth.
-  </div>
-  <div class="pills">
-    <span class="pill">Grace</span>
-    <span class="pill">James</span>
-    <span class="pill">Phoebe</span>
-    <span class="pill">Suzie</span>
   </div>
 
   <h3>How to think about it</h3>
@@ -343,19 +534,21 @@
 
 <!-- CONTENT ENGINEERING SYSTEM -->
 <section role="tabpanel" id="content-engineering-system" aria-labelledby="tab-content-engineering-system" class="guide" tabindex="0" hidden>
-  <h2>Content Engineering System</h2>
+  <div class="project-header">
+    <span class="big-num">03</span>
+    <div class="project-header-text">
+      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 03</span>
+      <h2>Content Engineering System</h2>
+    </div>
+  </div>
   <div class="callout">
     <span class="label">The problem in one line</span>
     A centralized source of truth that dynamically feeds AI your brand guide, messaging docs, and content-type best practices — so contractors, agencies, and internal writers all work from the same inputs instead of material scattered across Figma, Notion, and Slides.
   </div>
-  <div class="pills">
-    <span class="pill">Jackie Pecquex</span>
-    <span class="pill">Nina</span>
-  </div>
 
   <h3>How to think about it</h3>
   <p>Content engineering basically means: make your brand context available to AI on demand, instead of relying on someone to remember which Notion doc the brand guide lives in and paste it into a prompt. The deliverable isn't a document. It's a system where "write a blog intro" automatically pulls in the right voice, the right rules for that content type, and the right examples — without the writer having to round any of it up.</p>
-  <p>This is the most behind-the-scenes of the five projects, which suits a 2-person team. Less UI, more pipes.</p>
+  <p>This is the most behind-the-scenes of the five projects, which suits a small team. Less UI, more pipes.</p>
 
   <h3>A suggested approach</h3>
   <ul>
@@ -384,14 +577,16 @@
 
 <!-- CUSTOMER JOURNEY 360 -->
 <section role="tabpanel" id="customer-journey-360" aria-labelledby="tab-customer-journey-360" class="guide" tabindex="0" hidden>
-  <h2>Customer Journey 360</h2>
+  <div class="project-header">
+    <span class="big-num">04</span>
+    <div class="project-header-text">
+      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 04</span>
+      <h2>Customer Journey 360</h2>
+    </div>
+  </div>
   <div class="callout">
     <span class="label">The problem in one line</span>
     A unified view of everything a single customer receives across Iterable, Salesloft, Zendesk, in-app messages, and other touchpoints — so field teams can prep for calls and QBRs, investigate self-serve behavior, spot duplicate comms, and audit self-serve-to-sales handoffs using real examples instead of theory.
-  </div>
-  <div class="pills">
-    <span class="pill">Josh Rosenblatt</span>
-    <span class="pill">nico</span>
   </div>
 
   <h3>How to think about it</h3>
@@ -426,15 +621,16 @@
 
 <!-- UPDATE MEGA MIND -->
 <section role="tabpanel" id="update-mega-mind" aria-labelledby="tab-update-mega-mind" class="guide" tabindex="0" hidden>
-  <h2>Update Mega Mind</h2>
+  <div class="project-header">
+    <span class="big-num">05</span>
+    <div class="project-header-text">
+      <span class="small-kicker">Starter guide<span class="dot">✶</span>Project 05</span>
+      <h2>Update Mega Mind</h2>
+    </div>
+  </div>
   <div class="callout">
     <span class="label">The problem in one line</span>
     A system fed with project tooling, experiment updates, and status updates that can be queried to auto-generate recurring WBR, MBR, and other status decks — eliminating the repetitive deck-building that's currently eating into evenings.
-  </div>
-  <div class="pills">
-    <span class="pill">Jasmine Howard</span>
-    <span class="pill">Kay-Kay</span>
-    <span class="pill">Xavier Mangin</span>
   </div>
 
   <h3>How to think about it</h3>
@@ -468,8 +664,8 @@
 </section>
 
 <footer class="site">
-  <span class="mark">Internal hackathon resource</span>
-  <span>Marketing Spring Hackathon · 2026</span>
+  <span><span class="mark">Internal</span><span class="dot">✶</span>Hackathon Resource</span>
+  <span>Spring '26<span class="dot">✶</span>v1.0</span>
 </footer>
 
 </div>
@@ -495,6 +691,8 @@
       t.setAttribute('tabindex', selected ? '0' : '-1');
       panels[i].hidden = !selected;
     });
+
+    document.documentElement.style.setProperty('--project-color', tabs[idx].dataset.color);
 
     if (opts.updateHash !== false) {
       var newHash = '#' + tabs[idx].dataset.slug;
