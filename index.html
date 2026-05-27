@@ -398,7 +398,22 @@
     .page { padding: 24px 20px 64px; }
     header.site h1.display { font-size: clamp(40px, 12vw, 64px); }
     .marquee { margin-left: -20px; margin-right: -20px; }
-    .tabs-wrap { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+    .tabs-wrap {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 10px 20px 9px;
+    }
+    [role="tablist"] {
+      flex-wrap: nowrap;
+      gap: 6px;
+      padding-right: 20px;
+    }
+    [role="tab"] {
+      padding: 6px 12px;
+      font-size: 13px;
+      gap: 6px;
+    }
+    [role="tab"] .tab-num { font-size: 14px; }
     .project-header { gap: 16px; }
     .big-num { font-size: 72px; }
     .guide h2 { font-size: 30px; }
